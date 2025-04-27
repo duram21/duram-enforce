@@ -7,6 +7,7 @@ public class Passive : MonoBehaviour
 {
     public PassiveData data;
     public int level;
+    bool isMax = false;
     
     [SerializeField] private Image icon;
     [SerializeField] private Text textLevel;
@@ -15,6 +16,8 @@ public class Passive : MonoBehaviour
     [SerializeField] private Text textNext;
     [SerializeField] private Text textCost;
     [SerializeField] private Text textRate;
+    [SerializeField] private Button enforceBtn;
+
 
     void OnEnable()
     {
@@ -23,7 +26,9 @@ public class Passive : MonoBehaviour
     }
     void SetText()
     {
-
+        if(isMax) 
+            return;
+        
         textLevel.text = "Lv." + (level);
         textName.text = "기본 " + data.passiveName + " 강화";
         textCur.text = "현재   " + (data.baseValue + (level == 0 ? 0 : data.value[level - 1])).ToString();
@@ -35,7 +40,7 @@ public class Passive : MonoBehaviour
 
     public void Upgrade()
     {
-        if(!CoinCheck())
+        if(isMax || !CoinCheck())
             return;
 
         GameManager.Inst.Coin -= data.cost[level];
@@ -55,6 +60,9 @@ public class Passive : MonoBehaviour
     
     bool CoinCheck()
     {
+        if(isMax)
+            return false;
+
         if(GameManager.Inst.Coin < data.cost[level])
         {
             return false;
@@ -66,7 +74,8 @@ public class Passive : MonoBehaviour
     void Success()
     {
         level++;
-        if(level == data.value.Length)
+
+        if(level >= data.value.Length)
         {
             // max level에 도달하면
             MaxLevel();
@@ -80,7 +89,14 @@ public class Passive : MonoBehaviour
 
     void MaxLevel()
     {
-
+        textLevel.text = "Lv.MAX";
+        textName.text = "기본 " + data.passiveName + " 강화";
+        textCur.text = "현재   " + (data.baseValue + (level == 0 ? 0 : data.value[level - 1])).ToString();
+        textNext.text = "최대 강화";
+        textCost.text = "";
+        textRate.text = "";
+        enforceBtn.interactable = false;
+        isMax = true;
     }
 
 

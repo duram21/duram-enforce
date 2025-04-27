@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public enum InfoType {Coin}
+    public enum InfoType {Coin, Time}
     public InfoType type;
 
     Text myText;
@@ -26,6 +26,13 @@ public class HUD : MonoBehaviour
         {
             case InfoType.Coin:
                 myText.text = GameManager.Inst.Coin.ToString();
+                break;
+            
+            case InfoType.Time:
+                float remainTime = (GameManager.Inst.isFight ? GameManager.Inst.maxStageTime : GameManager.Inst.maxPreStageTime) - GameManager.Inst.stageTime;
+                int min = Mathf.FloorToInt(remainTime / 60);
+                int sec = Mathf.FloorToInt(remainTime % 60);
+                myText.text = string.Format("{0:D2}:{1:D2}", min, sec);
                 break;
         }
     }
