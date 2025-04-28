@@ -48,8 +48,10 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.46f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\UI\DraggableUI.cs" />
+    <Compile Include="Assets\Script\UI\DroppableUI.cs" />
     <Compile Include="Assets\Script\UI\HUD.cs" />
-    <Compile Include="Assets\Script\UIButton.cs" />
+    <Compile Include="Assets\Script\UI\UIButton.cs" />
     <Compile Include="Assets\Script\Weapon.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\EnemyDataSO.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Assets\Script\PoolManager.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
     <Compile Include="Assets\Script\Upgrade.cs" />
+    <Compile Include="Assets\Script\Item.cs" />
     <Compile Include="Assets\Script\Passive.cs" />
   </ItemGroup>
   <ItemGroup>

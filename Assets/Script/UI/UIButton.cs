@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UIButton : MonoBehaviour
 {
-    public enum ButtonType {UpgradeTab}
+    public enum ButtonType {UpgradeTab, EquipTab}
     
     public ButtonType buttonType;
     public GameObject uiTab;

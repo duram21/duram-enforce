@@ -6,18 +6,43 @@ public class Weapon : MonoBehaviour
     public int prefabId;
     public float damage;
     public float speed;
+    public Item.WeaponTier weaponTier;
+    public SpriteRenderer spriter;
+    public bool isEquipped;
+
+
 
     float timer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        spriter = GetComponent<SpriteRenderer>();
+    }
+
+    public void Init(Item data)
+    {
+        gameObject.SetActive(true);
+        this.id = data.id;
+        this.prefabId = data.id;
+        this.damage = data.damage;
+        this.speed = data.speed;
+        spriter.sprite = data.sprite;
+        this.weaponTier = data.weaponTier;
+    }
+
+    public void Unequip()
+    {
+        gameObject.SetActive(false);
+        // Debug.Log("해제할래?");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!GameManager.Inst.isFight){
+            timer = 0;
+            return;
+        }
         switch (id)
         {
             case 0:

@@ -12,3 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac7f7fb4d8ec4043be4d573a640c137, type: 3}
   m_Name: EnemyDataSO
   m_EditorClassIdentifier: 
+  enemyDatas:
+  - sprite: {fileID: 2129895255, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
+    name: "\uD5C8\uC218\uC544\uBE44"
+    health: 50
+  - sprite: {fileID: -493647738, guid: 3bcb7877229a5334da528f2f0872b5c3, type: 3}
+    name: "\uB450\uB78C"
+    health: 100
+  - sprite: {fileID: -2092964637, guid: 4104ee12b4d54f54b91b3ba875787837, type: 3}
+    name: "\uAF2C\uB450\uB78C\uC774"
+    health: 200
+  - sprite: {fileID: 1782705385, guid: d33598d781682e049a53a0a13104ef29, type: 3}
+    name: "\uB098\uB294\uAF2C\uB450\uB78C\uC774"
+    health: 300

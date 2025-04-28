@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public EnemyDataSO enemyDataSO;
     public int Coin;
+    public Enemy currentEnemey;
 
 
 
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         GameObject enemy = pool.Get(0);
         enemy.transform.position = Vector3.zero;
         enemy.GetComponent<Enemy>().Init(enemyDataSO.enemyDatas[stageIndex]);
+        currentEnemey = enemy.GetComponent<Enemy>();
     }
     
 
