@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     Collider2D coll;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
+    public GameObject dropItemPrefab;
 
     void Awake()
     {
@@ -51,15 +52,33 @@ public class Enemy : MonoBehaviour
         {
 
         }
-        else
+        else if(health <= 0)
         {
-            isLive = false;
-            coll.enabled = false;
-            rigid.simulated = false;
-            spriter.sortingOrder = 1;
-            GameManager.Inst.StageClear();
+            DropReward();
+            Dead();
         }
     }
+
+    public void Dead()
+    {
+        isLive = false;
+        coll.enabled = false;
+        rigid.simulated = false;
+        spriter.sortingOrder = 1;
+        gameObject.SetActive(false);
+        GameManager.Inst.StageClear();
+
+    }
+    public void DropReward()
+    {
+        int count = Random.Range(1, 4);
+        for(int i = 0 ;  i < count ; i++){
+            // DropItem item = Instantiate(dropItemPrefab).GetComponent<DropItem>();
+            DropItem item = GameManager.Inst.pool.Get(2).GetComponent<DropItem>();
+            item.Init(transform.position);
+        }
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

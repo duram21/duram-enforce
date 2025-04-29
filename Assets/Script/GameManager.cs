@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,12 +22,17 @@ public class GameManager : MonoBehaviour
     public int Coin;
     public Enemy currentEnemey;
 
+    [Header("# Item Data")]
+    public WeaponArray weaponArray;
+    public GameObject inventory;
 
 
     void Awake()
     {
         Inst = this;
     }
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,7 +77,6 @@ public class GameManager : MonoBehaviour
     public void StageClear()
     {
         isFight = false;
-
         stageTime = 0;
         stageIndex++;
 

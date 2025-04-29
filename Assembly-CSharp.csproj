@@ -53,6 +53,8 @@
     <Compile Include="Assets\Script\UI\HUD.cs" />
     <Compile Include="Assets\Script\UI\UIButton.cs" />
     <Compile Include="Assets\Script\Weapon.cs" />
+    <Compile Include="Assets\Script\DropItem.cs" />
+    <Compile Include="Assets\Data\Weapon\WeaponArray.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\EnemyDataSO.cs" />
     <Compile Include="Assets\Script\Bullet.cs" />

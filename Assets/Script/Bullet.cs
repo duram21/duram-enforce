@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     public void Init(float damage,  Vector3 dir)
     {
         this.damage = damage;
-        rigid.linearVelocity = dir * 4f;
+        rigid.linearVelocity = dir * 20f;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -9,6 +9,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     public RectTransform rect;
     public SlotType slotType;
     public Weapon weapon;
+    public GameObject slotItem;
 
 
     void Awake()
@@ -19,7 +20,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        image.color = Color.yellow;
+        image.color = Color.gray;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -36,23 +37,39 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
         Item item = draggedObject.GetComponent<DraggableUI>().item;
         SlotType previousSlotType = draggedObject.GetComponent<DraggableUI>().previousSlotType;
 
-        eventData.pointerDrag.transform.SetParent(transform);
+        //eventData.pointerDrag.transform.SetParent(transform);
         eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
         
-        Debug.Log(previousSlotType);
-
+        
 
         // 무기 장착
         if (slotType == SlotType.Selected && previousSlotType == SlotType.Inventory)
         {
+            // weapon 초기화
             weapon.Init(item);
+
+            // selected slot 초기화
+            slotItem.SetActive(true);
+            slotItem.GetComponent<DraggableUI>().Init(item);
+            
+            
+            // inventory slot 초기화
+            //draggedObject.SetActive(false);
+            draggedObject.GetComponent<DraggableUI>().isActive = false;
         }
         // 무기 장착 해제 
         else if(slotType == SlotType.Inventory && previousSlotType == SlotType.Selected)
         {
-            Debug.Log("장착 해제");
-            Debug.Log(weapon == null);
+            // 장착 해제 실행
             draggedObject.GetComponent<DraggableUI>().previousParent.GetComponent<DroppableUI>().weapon.Unequip();
+            
+            // selected slot 초기화
+            //draggedObject.SetActive(false);
+            draggedObject.GetComponent<DraggableUI>().isActive = false;
+
+            // inventory slot 초기화
+            slotItem.SetActive(true);
+            slotItem.GetComponent<DraggableUI>().Init(item);
         }
     }
 }
