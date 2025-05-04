@@ -3,14 +3,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/WeaponData")]
 public class Item : ScriptableObject
 {
-    public enum ItemType {Weapon}
+    public enum ItemType {Weapon, Coin}
+    public enum WeaponTier {Normal, Epic, Legendary}
     public ItemType itemType;
+    
+    // weapon Side
     public Sprite sprite;
     public int id;
     public int prefabId;
-    public float damage;
     public float speed;
     public string weaponName;
-    public enum WeaponTier {normal, epic, legendary}
     public WeaponTier weaponTier;
+    public int level;
+    public float[] damage;
+    
+
+    // Coin 
 }

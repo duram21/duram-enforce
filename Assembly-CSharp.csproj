@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\UI\DraggableUI.cs" />
     <Compile Include="Assets\Script\UI\DroppableUI.cs" />
+    <Compile Include="Assets\Script\UI\ItemInfoUI.cs" />
     <Compile Include="Assets\Script\UI\HUD.cs" />
     <Compile Include="Assets\Script\UI\UIButton.cs" />
     <Compile Include="Assets\Script\Weapon.cs" />

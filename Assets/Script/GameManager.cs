@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     public WeaponArray weaponArray;
     public GameObject inventory;
 
+    [Header("# Game Control")]
+    public bool isDrag;
+
 
     void Awake()
     {
@@ -40,7 +43,7 @@ public class GameManager : MonoBehaviour
         StartStage();
     }
 
-    void StartStage()
+    public void StartStage()
     {
         stageTime = 0;
         isFight = true;

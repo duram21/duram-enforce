@@ -38,7 +38,7 @@ public class HUD : MonoBehaviour
                 break;
             
             case InfoType.Health:
-                float currentHealth = GameManager.Inst.currentEnemey.health;
+                float currentHealth = Mathf.Max(0, GameManager.Inst.currentEnemey.health);
                 float maxHealth = GameManager.Inst.currentEnemey.maxHealth;
                 mySlider.value = currentHealth / maxHealth;
                 Text healthText = GetComponentsInChildren<Text>()[0];

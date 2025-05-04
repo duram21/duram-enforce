@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class UIButton : MonoBehaviour
 {
-    public enum ButtonType {UpgradeTab, EquipTab}
+    public enum ButtonType {UpgradeTab, EquipTab, Ready}
     
     public ButtonType buttonType;
-    public GameObject uiTab;
+    public GameObject[] uiTab;
     bool isOpen;
 
 
-    public void OnClick()
+    public void OnClick(int index)
     {
-        // 열려 있으면 ?
-        if(isOpen)
+        switch(buttonType)
         {
-            isOpen = false;
-            uiTab.SetActive(false);
-        }
-        else{
-            isOpen = true;
-            uiTab.SetActive(true);
+            case ButtonType.Ready:
+                if(GameManager.Inst.isFight) break;
+                GameManager.Inst.StartStage();
+
+                break;
+            
+            default :
+                for (int i = 0; i < uiTab.Length; i++)
+                {
+                    uiTab[i].SetActive(i == index);
+                }
+
+                break;
         }
     }
 }

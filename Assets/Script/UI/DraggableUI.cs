@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Transform canvas;
     public Transform previousParent;
@@ -13,30 +13,55 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public Image image;
     public Item item;
     public DroppableUI.SlotType previousSlotType;
+    public ItemInfoUI itemInfoUI;
+    public DroppableUI parentSlot;
+    public Image background;
 
-    public bool isActive;
+    public bool isActive = false;
 
 
-    void Awake()
-    {
-        canvas =  FindFirstObjectByType<Canvas>().transform;
-        rect = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
-        image = GetComponent<Image>();
 
-        Init(item);
-    }
 
     public void Init(Item item)
     {
-        this.item = item;
-        this.image.sprite = item.sprite;
+
         isActive=true;
+        this.item = item;
+        if(item)
+            this.image.sprite = item.sprite;
+
+        if(item == null)
+        {
+            background.color = Color.white;
+            return;
+        }
+
+        switch(item.weaponTier)
+        {
+            case Item.WeaponTier.Normal:
+                background.color = new Color32(0, 60, 255, 255);
+
+                break;
+
+            case Item.WeaponTier.Epic:
+                background.color = new Color32(169, 0, 233, 255);
+
+                break;
+
+            case Item.WeaponTier.Legendary:
+                background.color = new Color32(255, 240 ,0, 255);
+
+                break;
+        }
+    }
+
+    public void Deinit()
+    {
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log(" 드래그 시ㅏㅈㄱ");
         previousParent = transform.parent;
         previousSlotType = previousParent.GetComponent<DroppableUI>().slotType;
         transform.SetParent(canvas);
@@ -46,6 +71,7 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         canvasGroup.blocksRaycasts = false;
 
         isActive=true;
+        GameManager.Inst.isDrag = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -61,10 +87,24 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         canvasGroup.alpha = 1.0f;
         canvasGroup.blocksRaycasts = true;
-
+        Debug.Log(isActive);
         if(!isActive)
         {
             gameObject.SetActive(false);
         }
+        GameManager.Inst.isDrag =false;
+        itemInfoUI.Deinit();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(!GameManager.Inst.isDrag)
+            itemInfoUI.Init(item);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(!GameManager.Inst.isDrag)
+            itemInfoUI.Deinit();
     }
 }

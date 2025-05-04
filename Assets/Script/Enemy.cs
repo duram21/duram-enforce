@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     }
     public void DropReward()
     {
-        int count = Random.Range(1, 4);
+        int count = Random.Range(3, 6);
         for(int i = 0 ;  i < count ; i++){
             // DropItem item = Instantiate(dropItemPrefab).GetComponent<DropItem>();
             DropItem item = GameManager.Inst.pool.Get(2).GetComponent<DropItem>();

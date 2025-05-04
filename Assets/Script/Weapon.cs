@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
     public int prefabId;
     public float damage;
     public float speed;
+    public int level;
     public Item.WeaponTier weaponTier;
     public SpriteRenderer spriter;
     public bool isEquipped;
@@ -24,7 +25,8 @@ public class Weapon : MonoBehaviour
         gameObject.SetActive(true);
         this.id = data.id;
         this.prefabId = data.id;
-        this.damage = data.damage;
+        this.level = data.level;
+        this.damage = data.damage[level];
         this.speed = data.speed;
         spriter.sprite = data.sprite;
         this.weaponTier = data.weaponTier;
@@ -33,7 +35,6 @@ public class Weapon : MonoBehaviour
     public void Unequip()
     {
         gameObject.SetActive(false);
-        // Debug.Log("해제할래?");
     }
 
     // Update is called once per frame

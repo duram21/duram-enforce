@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DropItem : MonoBehaviour
@@ -49,8 +50,8 @@ public class DropItem : MonoBehaviour
             if (collider.gameObject == this.gameObject)
             {
 
-                gameObject.SetActive(false);
                 GetNewItem();
+                gameObject.SetActive(false);
                 break;
             }
         }
@@ -58,24 +59,49 @@ public class DropItem : MonoBehaviour
 
     public void GetNewItem()
     {
+        int type = Random.Range(0, 2);
+        Debug.Log("선택됨" + type);
+
+        switch(type)
+        {
+            case 0:
+                SelectWeapon();
+                break;
+            
+            case 1:
+                SelectCoin();
+                break;
+        }
+            
+        
+    }
+
+    public void SelectWeapon()
+    {
+         Debug.Log("무기 선택됨");
         // 일단 임시로 무기만 얻을 수 있도록 해보자.
         // 무기 정보 랜덤으로 하나 뽑기...
         Item[] weaponData = GameManager.Inst.weaponArray.weaponData;
         int randIndex = Random.Range(0, weaponData.Length);
-        
         // 뽑은건 inventory에 넣어주자
         GameObject inventory = GameManager.Inst.inventory;
-
         // 자식을 가져오자 일단 inventory가 16개라고 가정!
         for(int i = 0 ; i < inventory.transform.childCount; i++){
-            Transform currentChild = inventory.transform.GetChild(i);
+            Transform currentChild = inventory.transform.GetChild(i).GetChild(0);
             if(currentChild.gameObject.activeSelf)
                 continue;
             
-            
+            currentChild.gameObject.SetActive(true);
             currentChild.GetComponent<DraggableUI>().Init(weaponData[randIndex]);
             break;
         }
-        
     }
+
+    public void SelectCoin()
+    {
+        Debug.Log("코인 선택됨");
+        int coinCount = Random.Range(1, 11);
+        GameManager.Inst.Coin += coinCount;
+    }
+    
 }

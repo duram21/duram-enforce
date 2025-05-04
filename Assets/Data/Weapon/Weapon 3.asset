@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666663870135ef34db84da98714c611f, type: 3}
   m_Name: Weapon 3
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  id: 0
-  prefabId: 0
-  damage: 0
-  speed: 0
-  weaponName: 
-  weaponTier: 0
+  itemType: 0
+  sprite: {fileID: -1786786079, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  id: 1
+  prefabId: 1
+  damage: 10
+  speed: 0.3
+  weaponName: "\uC784\uC2DC3"
+  weaponTier: 2

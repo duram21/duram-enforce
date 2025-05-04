@@ -18,6 +18,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
         rect = GetComponent<RectTransform>();
     }
 
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.color = Color.gray;
@@ -34,16 +35,56 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
             return;
 
         GameObject draggedObject = eventData.pointerDrag;
-        Item item = draggedObject.GetComponent<DraggableUI>().item;
-        SlotType previousSlotType = draggedObject.GetComponent<DraggableUI>().previousSlotType;
+        DraggableUI draggedSlot = draggedObject.GetComponent<DraggableUI>();
+        Item item = draggedSlot.item;
+        SlotType previousSlotType = draggedSlot.previousSlotType;
 
         //eventData.pointerDrag.transform.SetParent(transform);
         eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
         
+        // 시작지점은 무조건 오브젝트 있음.. 일단 두 슬롯의 정보를 교환
+        Item itemFrom = item;
+        Item itemTo = slotItem.GetComponent<DraggableUI>().item;
+        // slotItem.GetComponent<DraggableUI>().item = itemFrom;
+        // draggedSlot.item = itemTo;
+        draggedSlot.Init(itemTo);
+        slotItem.GetComponent<DraggableUI>().Init(itemFrom);
+        if(slotType == SlotType.Selected)
+        {
+            weapon.Init(item);
+        }
+
+
+        // 기존거 해제..
+        if(previousSlotType == SlotType.Inventory)
+        {
+            
+        }
+        else if(previousSlotType == SlotType.Selected)
+        {
+            draggedSlot.parentSlot.weapon.Unequip();
+        }
+        draggedSlot.isActive = false;
+
+        // 기존의 To(옮긴 위치) Slot이 활성화 되어 있으면 ?
+        if(slotItem.activeSelf)
+        { 
+            draggedSlot.isActive = true;
+            if(previousSlotType == SlotType.Selected)
+            {
+                draggedSlot.parentSlot.weapon.Init(itemTo);
+            }
+            else if(previousSlotType == SlotType.Inventory)
+            {
+
+            }
+        }
+        slotItem.SetActive(true);
+
         
 
         // 무기 장착
-        if (slotType == SlotType.Selected && previousSlotType == SlotType.Inventory)
+   /*     if (slotType == SlotType.Selected && previousSlotType == SlotType.Inventory)
         {
             // weapon 초기화
             weapon.Init(item);
@@ -70,6 +111,6 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
             // inventory slot 초기화
             slotItem.SetActive(true);
             slotItem.GetComponent<DraggableUI>().Init(item);
-        }
+        }   */
     }
 }
