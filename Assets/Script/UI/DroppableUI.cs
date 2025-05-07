@@ -8,7 +8,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     public Image image;
     public RectTransform rect;
     public SlotType slotType;
-    public Weapon weapon;
+    public Warrior warrior;
     public GameObject slotItem;
 
 
@@ -48,14 +48,14 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
         slotItem.GetComponent<DraggableUI>().Init(itemFrom);
         if(slotType == SlotType.Selected)
         {
-            weapon.Init(item);
+            warrior.EquipWeapon(item);
         }
 
 
         // 기존거 해제..
         if(previousSlotType == SlotType.Selected)
         {
-            draggedSlot.parentSlot.weapon.Unequip();
+            draggedSlot.parentSlot.warrior.weapon.Unequip();
         }
         draggedSlot.isActive = false;
 
@@ -65,7 +65,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
             draggedSlot.isActive = true;
             if(previousSlotType == SlotType.Selected)
             {
-                draggedSlot.parentSlot.weapon.Init(itemTo);
+                draggedSlot.parentSlot.warrior.EquipWeapon(itemTo);
             }
         }
         slotItem.SetActive(true);

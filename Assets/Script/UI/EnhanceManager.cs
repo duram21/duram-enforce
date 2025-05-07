@@ -84,7 +84,7 @@ public class EnhanceManager : MonoBehaviour
         if(isMax)
             return;
 
-        
+
         int ran = Random.Range(1, 101);
         if(ran <= item.successRate[item.level])
         {

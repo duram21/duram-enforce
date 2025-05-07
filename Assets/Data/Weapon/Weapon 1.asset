@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   sprite: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  id: 0
+  id: 1
   prefabId: 1
   speed: 1
   weaponName: "\uB098\uB294\uAF2C\uB450\uB78C\uC774"
@@ -31,4 +31,4 @@ MonoBehaviour:
   - 80
   - 90
   - 100
-  successRate: 5a0000005a0000005a0000005a0000005a0000005a0000005a0000005a0000005a0000005a000000
+  successRate: 5a0000005a0000005a0000005a0000005a000000000000005a0000005a0000005a0000005a000000

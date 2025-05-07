@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Weapon 3
   m_EditorClassIdentifier: 
   itemType: 0
-  sprite: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  id: 0
+  sprite: {fileID: 563336626, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  id: 1
   prefabId: 1
   speed: 1
-  weaponName: "\uB098\uB294\uAF2C\uB450\uB78C\uC774"
-  weaponTier: 0
+  weaponName: "\uB098\uAF2C\uB78C"
+  weaponTier: 2
   level: 0
   damage:
   - 10
