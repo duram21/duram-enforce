@@ -81,10 +81,12 @@ public class DropItem : MonoBehaviour
          Debug.Log("무기 선택됨");
         // 일단 임시로 무기만 얻을 수 있도록 해보자.
         // 무기 정보 랜덤으로 하나 뽑기...
-        Item[] weaponData = GameManager.Inst.weaponArray.weaponData;
+        ItemSO[] weaponData = GameManager.Inst.weaponArray.weaponData;
         int randIndex = Random.Range(0, weaponData.Length);
+
         // 뽑은건 inventory에 넣어주자
         GameObject inventory = GameManager.Inst.inventory;
+
         // 자식을 가져오자 일단 inventory가 16개라고 가정!
         for(int i = 0 ; i < inventory.transform.childCount; i++){
             Transform currentChild = inventory.transform.GetChild(i).GetChild(0);
@@ -92,7 +94,7 @@ public class DropItem : MonoBehaviour
                 continue;
             
             currentChild.gameObject.SetActive(true);
-            currentChild.GetComponent<DraggableUI>().Init(weaponData[randIndex]);
+            currentChild.GetComponent<DraggableUI>().Init(new Item(weaponData[randIndex]));
             break;
         }
     }

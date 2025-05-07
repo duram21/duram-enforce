@@ -31,17 +31,17 @@ public class ItemInfoUI : MonoBehaviour //, IPointerEnterHandler, IPointerExitHa
         // 등급별 UI 변경
         switch(data.weaponTier)
         {
-            case Item.WeaponTier.Normal:
+            case ItemSO.WeaponTier.Normal:
                 itemTier.color = new Color32(0, 60, 255, 255);
 
                 break;
 
-            case Item.WeaponTier.Epic:
+            case ItemSO.WeaponTier.Epic:
                 itemTier.color = new Color32(169, 0, 233, 255);
 
                 break;
 
-            case Item.WeaponTier.Legendary:
+            case ItemSO.WeaponTier.Legendary:
                 itemTier.color = new Color32(255, 240 ,0, 255);
 
                 break;

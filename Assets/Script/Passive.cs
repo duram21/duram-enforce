@@ -54,8 +54,12 @@ public class Passive : MonoBehaviour
         {
             Fail();
         }
-
         SetText();
+
+        if(data.passiveType == PassiveData.PassiveType.speed)
+        {
+            GameManager.Inst.passiveWeaponSpeed = data.value[level];
+        }
     }
     
     bool CoinCheck()
@@ -74,6 +78,7 @@ public class Passive : MonoBehaviour
     void Success()
     {
         level++;
+        // 능력 업데이트 해야지..
 
         if(level >= data.value.Length)
         {

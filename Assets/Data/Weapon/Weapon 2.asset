@@ -9,14 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666663870135ef34db84da98714c611f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c3118b3af9b97045a25898d0dc58253, type: 3}
   m_Name: Weapon 2
   m_EditorClassIdentifier: 
   itemType: 0
-  sprite: {fileID: -344242777, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  id: 1
+  sprite: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  id: 0
   prefabId: 1
-  damage: 3
-  speed: 0.6
-  weaponName: "\uC784\uC2DC"
-  weaponTier: 1
+  speed: 1
+  weaponName: "\uB098\uB294\uAF2C\uB450\uB78C\uC774"
+  weaponTier: 0
+  level: 0
+  damage:
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+  - 60
+  - 70
+  - 80
+  - 90
+  - 100
+  successRate: 5a0000005a0000005a0000005a0000005a0000005a0000005a0000005a0000005a0000005a000000

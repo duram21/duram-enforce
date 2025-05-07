@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public float damage;
     public float speed;
     public int level;
-    public Item.WeaponTier weaponTier;
+    public ItemSO.WeaponTier weaponTier;
     public SpriteRenderer spriter;
     public bool isEquipped;
 
@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     {
         gameObject.SetActive(true);
         this.id = data.id;
-        this.prefabId = data.id;
+        this.prefabId = data.prefabId;
         this.level = data.level;
         this.damage = data.damage[level];
         this.speed = data.speed;
@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
             default:
                 timer += Time.deltaTime;
 
-                if (timer > speed)
+                if (timer > speed * GameManager.Inst.passiveWeaponSpeed)
                 {
                     timer = 0f;
                     Fire();
@@ -74,4 +74,6 @@ public class Weapon : MonoBehaviour
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage, dir);
     }
+
+
 }

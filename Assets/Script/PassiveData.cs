@@ -5,7 +5,7 @@ using UnityEngine.UIElements.Experimental;
 [CreateAssetMenu(fileName = "PassiveData", menuName = "Scriptable Objects/PassiveData")]
 public class PassiveData : ScriptableObject
 {
-    public enum PassiveType {Health, Armor, Attack}
+    public enum PassiveType {speed, Armor, Attack}
 
     [Header("# Main Info")]
     public PassiveType passiveType;

@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     [Header("# Game Control")]
     public bool isDrag;
 
+    [Header("# Passive Data")]
+    public float passiveWeaponSpeed;
+    public int passiveWeaponDamage;
+
 
     void Awake()
     {

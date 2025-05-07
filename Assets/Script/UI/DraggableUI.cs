@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Transform canvas;
     public Transform previousParent;
@@ -16,10 +16,9 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public ItemInfoUI itemInfoUI;
     public DroppableUI parentSlot;
     public Image background;
+    public Text levelText;
 
     public bool isActive = false;
-
-
 
 
     public void Init(Item item)
@@ -27,9 +26,10 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         isActive=true;
         this.item = item;
-        if(item)
+        if(item != null){
             this.image.sprite = item.sprite;
-
+            levelText.text = "Lv." + item.level;        
+        }
         if(item == null)
         {
             background.color = Color.white;
@@ -38,17 +38,17 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         switch(item.weaponTier)
         {
-            case Item.WeaponTier.Normal:
+            case ItemSO.WeaponTier.Normal:
                 background.color = new Color32(0, 60, 255, 255);
 
                 break;
 
-            case Item.WeaponTier.Epic:
+            case ItemSO.WeaponTier.Epic:
                 background.color = new Color32(169, 0, 233, 255);
 
                 break;
 
-            case Item.WeaponTier.Legendary:
+            case ItemSO.WeaponTier.Legendary:
                 background.color = new Color32(255, 240 ,0, 255);
 
                 break;
@@ -107,4 +107,12 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if(!GameManager.Inst.isDrag)
             itemInfoUI.Deinit();
     }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("마우스로 클릭됨!");
+        EnhanceManager.Instance.draggableUI = this;
+        EnhanceManager.Instance.Init(item);
+    }
+
+
 }
