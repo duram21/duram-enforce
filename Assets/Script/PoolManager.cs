@@ -34,13 +34,22 @@ public class PoolManager : MonoBehaviour
         }
 
         if (!select)
-        {
-            select = Instantiate(prefabs[index], transform);
+        {            
+            if(index == 3) // UI Damage
+            {
+                select = Instantiate(prefabs[index], GameManager.Inst.canvas.transform);
+            }
+            else // World Prefabs
+            {
+                select = Instantiate(prefabs[index], transform);   
+            }
             pools[index].Add(select);
         }
 
-        // ... 
+         
 
         return select;
     }
+    
+    
 }

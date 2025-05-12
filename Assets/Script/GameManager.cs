@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public EnemyDataSO enemyDataSO;
     public int Coin;
     public Enemy currentEnemey;
+    public Canvas canvas;
 
     [Header("# Item Data")]
     public WeaponArray weaponArray;
