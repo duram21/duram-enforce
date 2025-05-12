@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyDatas:
   - sprite: {fileID: 2129895255, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
     name: "\uD5C8\uC218\uC544\uBE44"
-    health: 20
+    health: 10000
   - sprite: {fileID: -493647738, guid: 3bcb7877229a5334da528f2f0872b5c3, type: 3}
     name: "\uB450\uB78C"
     health: 100
