@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     public GameObject dropItemPrefab;
+    [SerializeField] public DamageSpawner damageSpawner;
 
     void Awake()
     {
@@ -46,7 +48,15 @@ public class Enemy : MonoBehaviour
         if (!collision.CompareTag("Bullet") || !isLive)
             return;
 
-        health -= collision.GetComponent<Bullet>().damage;
+        // health -= collision.GetComponent<Bullet>().damage;
+        float damage = collision.GetComponent<Bullet>().damage;
+        OnDamage(damage);
+        damageSpawner.SpawnDamage(damage);
+    }
+
+    public void OnDamage(float damage)
+    {
+        health -= damage;
 
         if (health > 0)
         {
@@ -77,20 +87,5 @@ public class Enemy : MonoBehaviour
             DropItem item = GameManager.Inst.pool.Get(2).GetComponent<DropItem>();
             item.Init(transform.position);
         }
-    }
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
